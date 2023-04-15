@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DISPLAY ADMIN DETAILS</title>
+</head>
+<body>
+<div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Striped Table</h4>
+                    <p class="card-description"> Add class <code>.table-striped</code>
+                    </p>
+                    <div class="table-responsive">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th> NAME </th>
+                            <th> EMAIL </th>
+                            <th> MOBILE </th>
+                            <th> USERNAME </th>
+                            <th> PASSWORD </th>
+                            <th> IMAGE</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in data %}
+                          <tr>
+                            <td>{{ d.NAME }}</td>
+                            <td>{{ d.EMAIL }}</td>
+                            <td>{{ d.MOBILE }} </td>
+                            <td>{{ d.USERNAME }}</td>
+                            <td>{{ d.PASSWORD }}</td>
+                            <td>
+                               <img src="{{d.IMAGE.url}}">
+                            </td>
+                            <td>
+                              <form action="{% url 'editadminpage' dataid=d.id %}">
+                              <button type="submit" class="btn btn-success">edit </button>
+                              </form>
+                            </td>
+                            <td>
+                              <form action="{% url 'deleteadmin' dataid=d.id %}">
+                              <button type="submit" class="btn btn-success">delete </button>
+                              </form>
+                            </td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+{% endblock %}
